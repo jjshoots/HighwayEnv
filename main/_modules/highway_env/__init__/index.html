@@ -291,13 +291,25 @@
           <article role="main">
             
             <h1>Source code for highway_env.__init__</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Hide pygame support prompt</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
+<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;1.8.2&quot;</span>
 
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">farama_notifications</span> <span class="kn">import</span> <span class="n">notifications</span>
+
+    <span class="k">if</span> <span class="s2">&quot;highway_env&quot;</span> <span class="ow">in</span> <span class="n">notifications</span> <span class="ow">and</span> <span class="n">__version__</span> <span class="ow">in</span> <span class="n">notifications</span><span class="p">[</span><span class="s2">&quot;gymnasium&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">notifications</span><span class="p">[</span><span class="s2">&quot;highway_env&quot;</span><span class="p">][</span><span class="n">__version__</span><span class="p">],</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># nosec</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Hide pygame support prompt</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYGAME_HIDE_SUPPORT_PROMPT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
 
 <span class="kn">from</span> <span class="nn">gymnasium.envs.registration</span> <span class="kn">import</span> <span class="n">register</span>
+
 
 <div class="viewcode-block" id="register_highway_envs">
 <a class="viewcode-back" href="../../../make_your_own/#highway_env.__init__.register_highway_envs">[docs]</a>
